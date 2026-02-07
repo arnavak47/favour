@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>For Aditi 💖</title>
+  <title>Will You Be My Valentine? 💖</title>
   <style>
     body {
       margin: 0;
@@ -13,7 +13,6 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      color: #333;
     }
 
     .card {
@@ -21,9 +20,10 @@
       padding: 2.5rem;
       border-radius: 20px;
       max-width: 420px;
+      width: 90%;
       text-align: center;
       box-shadow: 0 20px 40px rgba(0,0,0,0.15);
-      animation: pop 1s ease;
+      animation: pop 0.8s ease;
     }
 
     @keyframes pop {
@@ -32,68 +32,101 @@
     }
 
     h1 {
-      font-size: 2.2rem;
-      margin-bottom: 0.5rem;
       color: #ff4d6d;
-    }
-
-    p {
-      font-size: 1.05rem;
-      line-height: 1.6;
       margin-bottom: 1.5rem;
     }
 
-    .heart {
-      font-size: 3rem;
-      animation: beat 1.2s infinite;
-    }
-
-    @keyframes beat {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.2); }
+    .buttons {
+      position: relative;
+      height: 80px;
     }
 
     button {
-      background: #ff4d6d;
-      color: white;
-      border: none;
       padding: 0.8rem 1.5rem;
       border-radius: 30px;
+      border: none;
       font-size: 1rem;
       cursor: pointer;
-      transition: transform 0.2s, box-shadow 0.2s;
+      position: absolute;
     }
 
-    button:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 20px rgba(255,77,109,0.4);
+    #yesBtn {
+      background: #ff4d6d;
+      color: white;
+      left: 50%;
+      transform: translateX(-50%);
     }
 
-    .hidden {
+    #noBtn {
+      background: #ddd;
+      color: #333;
+      left: 10%;
+    }
+
+    .result {
       display: none;
+      margin-top: 1.5rem;
+    }
+
+    .result h2 {
+      color: #ff4d6d;
+    }
+
+    .photo-box {
       margin-top: 1rem;
-      color: #444;
+    }
+
+    .photo-box img {
+      width: 100%;
+      max-width: 250px;
+      border-radius: 15px;
+      margin-top: 0.5rem;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
     }
   </style>
 </head>
 <body>
   <div class="card">
-    <div class="heart">💖</div>
-    <h1>Aditi</h1>
-    <p>
-      I made this little website just for you.
-      It’s simple, but it comes with a lot of care and good vibes.
-    </p>
-    <button onclick="showMessage()">Click for a surprise ✨</button>
-    <p id="msg" class="hidden">
-      Happy Valentine’s Day 🌸<br />
-      You make days brighter just by being you.
-    </p>
+    <h1>Will you be my Valentine? 💘</h1>
+
+    <div class="buttons" id="buttons">
+      <button id="yesBtn" onclick="yesClicked()">Yes 💖</button>
+      <button id="noBtn" onmouseover="moveNo()">No 🙃</button>
+    </div>
+
+    <div class="result" id="result">
+      <h2>Good choice 😌💗</h2>
+      <p>You officially made my day.</p>
+
+      <div class="photo-box">
+        <!-- STEP: Replace 'photo.jpg' with your image file name -->
+        <img src="photo5.jpg" alt="Our photo">
+        <img src="photo4.jpg" alt="Our photo">
+        <img src="photo3.jpg" alt="Our photo">
+        <img src="photo2.jpg" alt="Our photo">
+        <img src="photo1.jpg" alt="Our photo">
+      </div>
+    </div>
   </div>
 
   <script>
-    function showMessage() {
-      document.getElementById('msg').style.display = 'block';
+    function moveNo() {
+      const noBtn = document.getElementById('noBtn');
+      const container = document.getElementById('buttons');
+
+      const maxX = container.offsetWidth - noBtn.offsetWidth;
+      const maxY = container.offsetHeight - noBtn.offsetHeight;
+
+      const x = Math.random() * maxX;
+      const y = Math.random() * maxY;
+
+      noBtn.style.left = x + 'px';
+      noBtn.style.top = y + 'px';
+    }
+
+    function yesClicked() {
+      document.getElementById('buttons').style.display = 'none';
+      document.getElementById('result').style.display = 'block';
     }
   </script>
 </body>
